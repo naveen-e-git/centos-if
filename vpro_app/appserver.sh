@@ -16,7 +16,6 @@ echo "This is UBUNTU SERVER"
         
         sudo apt-get update
 	sudo add-apt-repository ppa:openjdk-r/ppa -y
-#	sudo apt-get remove java* -y
 	sudo apt-get update
         sudo apt-get install openjdk-8-jdk -y
 
@@ -54,8 +53,6 @@ else
 
 	cd /opt
 	wget http://www-eu.apache.org/dist/tomcat/tomcat-8/v8.5.33/bin/apache-tomcat-8.5.33.tar.gz
-	#mv apache-tomcat-8.5.33.tar.gz /opt/apache-tomcat-8.5.32.tar.gz
-	#cd /opt/
 	tar -xvzf apache-tomcat-8.5.33.tar.gz
 
 #remove default home page for tomcat and deploy our app as ROOT.war
@@ -63,15 +60,6 @@ else
 	rm -rf /opt/apache-tomcat-8.5.33/webapps/ROOT
 	cp /vagrant/vpro_app/VProfile/target/vprofile-v1.war /opt/apache-tomcat-8.5.33/webapps/ROOT.war
 
-##### enabling the firewall and allowing port 8080 to access the tomcat
-
-        service iptables stop
-	chkconfig iptables off
-	#systemctl start firewalld        
-        #systemctl enable firewalld
-	#firewall-cmd --get-active-zones
-	#firewall-cmd --zone=public --add-port=8080/tcp --permanent
-	#firewall-cmd --reload
 	/opt/apache-tomcat-8.5.33/bin/startup.sh &
 
 	echo " TOMCAT STARTED"

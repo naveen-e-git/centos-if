@@ -35,12 +35,5 @@ echo "THIS IS REDHAT"
    sudo	systemctl start memcached
    sudo	systemctl enable memcached
    sudo	systemctl status memcached
-
-#<<<<<<<<firewall>>>>>>>
         
-   sudo systemctl enable firewalld
-   sudo systemctl start firewalld
-   sudo systemctl status firewalld
-   sudo	firewall-cmd --add-port=11211/tcp --permanent
-   firewall-cmd --reload
 fi

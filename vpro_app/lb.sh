@@ -48,7 +48,6 @@ EOT
 #enable firewall
 
             echo "enable firewall"
-           #sudo ufw enable
             sudo ufw allow 80/tcp
             sudo ufw status numbered
 
@@ -66,8 +65,6 @@ else
           sudo yum install nginx -y
           sudo service nginx start
           sudo chkconfig nginx on
-          #sudo yum install firewalld -y
-          #sudo systemctl start firewalld
 		
 
 cat <<EOT > vproapp
@@ -92,18 +89,10 @@ location / {
 
 EOT
 
-		mv vproapp /etc/nginx/sites-available/vproapp
-
-		rm -rf /etc/nginx/sites-enabled/default
-
-		ln -s /etc/nginx/sites-available/vproapp /etc/nginx/sites-enabled/vproapp
+         sudo("cat /root/vproapp  > /etc/nginx/conf.d/vproapp.conf")
 
 
-#firewall enabiling
-         #echo"enable firewall"
-         #firewall-cmd --get-active-zones
-         #firewall-cmd --zone=public --add-port=80/tcp --permanent
-         #firewall-cmd --reload
+
          sudo service nginx restart
 
 fi
